@@ -1,0 +1,13 @@
+.admin {
+    .recent-posts .post,
+    .recent-comments .comment {
+        min-width: 100%;
+    }
+
+    @media (min-width: 1200px) { 
+        .recent-posts .post,
+        .recent-comments .comment {
+            min-width: 50%;
+        }        
+    }
+}

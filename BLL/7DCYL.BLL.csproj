@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>_7DCYL.BLL</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DAL\7DCYL.DAL.csproj" />
+    <ProjectReference Include="..\Model\7DCYL.Model.csproj" />
+    <ProjectReference Include="..\Helper\Helper.csproj" />
+  </ItemGroup>
+
+</Project>

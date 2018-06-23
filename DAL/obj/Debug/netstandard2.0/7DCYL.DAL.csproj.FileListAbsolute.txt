@@ -1,0 +1,14 @@
+D:\Documents\Visual Studio Code\7DaysToChangeYourLife\DAL\bin\Debug\netstandard2.0\7DCYL.DAL.deps.json
+D:\Documents\Visual Studio Code\7DaysToChangeYourLife\DAL\bin\Debug\netstandard2.0\7DCYL.DAL.dll
+D:\Documents\Visual Studio Code\7DaysToChangeYourLife\DAL\bin\Debug\netstandard2.0\7DCYL.DAL.pdb
+D:\Documents\Visual Studio Code\7DaysToChangeYourLife\DAL\bin\Debug\netstandard2.0\7DCYL.Model.dll
+D:\Documents\Visual Studio Code\7DaysToChangeYourLife\DAL\bin\Debug\netstandard2.0\Helper.dll
+D:\Documents\Visual Studio Code\7DaysToChangeYourLife\DAL\bin\Debug\netstandard2.0\7DCYL.Model.pdb
+D:\Documents\Visual Studio Code\7DaysToChangeYourLife\DAL\bin\Debug\netstandard2.0\Helper.pdb
+D:\Documents\Visual Studio Code\7DaysToChangeYourLife\DAL\obj\Debug\netstandard2.0\7DCYL.DAL.csprojAssemblyReference.cache
+D:\Documents\Visual Studio Code\7DaysToChangeYourLife\DAL\obj\Debug\netstandard2.0\7DCYL.DAL.csproj.CoreCompileInputs.cache
+D:\Documents\Visual Studio Code\7DaysToChangeYourLife\DAL\obj\Debug\netstandard2.0\7DCYL.DAL.AssemblyInfoInputs.cache
+D:\Documents\Visual Studio Code\7DaysToChangeYourLife\DAL\obj\Debug\netstandard2.0\7DCYL.DAL.AssemblyInfo.cs
+D:\Documents\Visual Studio Code\7DaysToChangeYourLife\DAL\obj\Debug\netstandard2.0\7DCYL.DAL.csproj.CopyComplete
+D:\Documents\Visual Studio Code\7DaysToChangeYourLife\DAL\obj\Debug\netstandard2.0\7DCYL.DAL.dll
+D:\Documents\Visual Studio Code\7DaysToChangeYourLife\DAL\obj\Debug\netstandard2.0\7DCYL.DAL.pdb

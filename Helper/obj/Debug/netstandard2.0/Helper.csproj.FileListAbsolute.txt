@@ -1,0 +1,12 @@
+D:\Documents\Visual Studio Code\7DaysToChangeYourLife\Helper\bin\Debug\netstandard2.0\Helper.deps.json
+D:\Documents\Visual Studio Code\7DaysToChangeYourLife\Helper\bin\Debug\netstandard2.0\Helper.dll
+D:\Documents\Visual Studio Code\7DaysToChangeYourLife\Helper\bin\Debug\netstandard2.0\Helper.pdb
+D:\Documents\Visual Studio Code\7DaysToChangeYourLife\Helper\bin\Debug\netstandard2.0\7DCYL.Model.dll
+D:\Documents\Visual Studio Code\7DaysToChangeYourLife\Helper\bin\Debug\netstandard2.0\7DCYL.Model.pdb
+D:\Documents\Visual Studio Code\7DaysToChangeYourLife\Helper\obj\Debug\netstandard2.0\Helper.csprojAssemblyReference.cache
+D:\Documents\Visual Studio Code\7DaysToChangeYourLife\Helper\obj\Debug\netstandard2.0\Helper.csproj.CoreCompileInputs.cache
+D:\Documents\Visual Studio Code\7DaysToChangeYourLife\Helper\obj\Debug\netstandard2.0\Helper.AssemblyInfoInputs.cache
+D:\Documents\Visual Studio Code\7DaysToChangeYourLife\Helper\obj\Debug\netstandard2.0\Helper.AssemblyInfo.cs
+D:\Documents\Visual Studio Code\7DaysToChangeYourLife\Helper\obj\Debug\netstandard2.0\Helper.csproj.CopyComplete
+D:\Documents\Visual Studio Code\7DaysToChangeYourLife\Helper\obj\Debug\netstandard2.0\Helper.dll
+D:\Documents\Visual Studio Code\7DaysToChangeYourLife\Helper\obj\Debug\netstandard2.0\Helper.pdb

@@ -1,0 +1,32 @@
+@model Web.Models.Account.LoginViewModel
+@{
+    Layout = "_AdminLayout";
+}
+
+<environment include="Development">
+    <link rel="stylesheet" href="~/css/login.css" />
+</environment>
+<environment exclude="Development">
+    <link rel="stylesheet" href="~/css/login.min.css" />
+</environment>
+<div class="login">
+    <form asp-controller="Account" asp-action="Login" 
+          asp-route-returnurl="@ViewData["ReturnUrl"]"
+          asp asp-anti-forgery="true" >
+        <h3>Login</h3>
+        <div class="form-group">
+            <label asp-for="UserNameOrEmail"></label>
+            <input class="form-control" asp-for="UserNameOrEmail">
+            <span asp-validation-for="UserNameOrEmail"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Password"></label>
+            <input class="form-control" asp-for="Password"/>
+            <span asp-validation-for="Password"></span>
+        </div>
+        <div class="form-group" asp-validation-summary="ModelOnly">
+            <span>Invalid login:</span>
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+</div>

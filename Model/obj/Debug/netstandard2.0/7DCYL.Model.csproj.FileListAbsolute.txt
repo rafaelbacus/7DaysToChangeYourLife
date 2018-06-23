@@ -1,0 +1,9 @@
+D:\Documents\Visual Studio Code\7DaysToChangeYourLife\Model\bin\Debug\netstandard2.0\7DCYL.Model.deps.json
+D:\Documents\Visual Studio Code\7DaysToChangeYourLife\Model\bin\Debug\netstandard2.0\7DCYL.Model.dll
+D:\Documents\Visual Studio Code\7DaysToChangeYourLife\Model\bin\Debug\netstandard2.0\7DCYL.Model.pdb
+D:\Documents\Visual Studio Code\7DaysToChangeYourLife\Model\obj\Debug\netstandard2.0\7DCYL.Model.csprojAssemblyReference.cache
+D:\Documents\Visual Studio Code\7DaysToChangeYourLife\Model\obj\Debug\netstandard2.0\7DCYL.Model.csproj.CoreCompileInputs.cache
+D:\Documents\Visual Studio Code\7DaysToChangeYourLife\Model\obj\Debug\netstandard2.0\7DCYL.Model.AssemblyInfoInputs.cache
+D:\Documents\Visual Studio Code\7DaysToChangeYourLife\Model\obj\Debug\netstandard2.0\7DCYL.Model.AssemblyInfo.cs
+D:\Documents\Visual Studio Code\7DaysToChangeYourLife\Model\obj\Debug\netstandard2.0\7DCYL.Model.dll
+D:\Documents\Visual Studio Code\7DaysToChangeYourLife\Model\obj\Debug\netstandard2.0\7DCYL.Model.pdb

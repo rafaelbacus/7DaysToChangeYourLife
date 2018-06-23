@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BLL\7DCYL.BLL.csproj" />
+    <ProjectReference Include="..\DAL\7DCYL.DAL.csproj" />
+    <ProjectReference Include="..\Helper\Helper.csproj" />
+    <ProjectReference Include="..\Model\7DCYL.Model.csproj" />
+  </ItemGroup>
+
+</Project>

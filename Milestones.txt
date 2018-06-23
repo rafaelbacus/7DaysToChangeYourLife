@@ -1,0 +1,29 @@
+Blog
+    Seed blog data if it doesn't exist :)
+
+Build DI service
+    BL  :)
+    DA  :)
+
+Admin Index
+    Blog
+        5 most recent posts
+		5 most recent comments
+        Post Count
+    Post
+        10 most recent posts
+    Comment
+
+WYSIWYG
+
+Post
+    Add
+    Edit
+    Delete
+
+Comment
+    Add 
+    Edit
+    Delete
+
+
