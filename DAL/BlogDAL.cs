@@ -22,10 +22,10 @@ namespace DAL
 
         public async Task<(IEnumerable<Post>, IEnumerable<Comment>)> GetRecentPostAndComments(SortOptions options, int count)
         {
-            IEnumerable<Post> recentPosts = await _post.GetPostsAsync(options, count);
-            IEnumerable<Comment> recentComments = await _comment.GetCommentsAsync(options, count);
+            IEnumerable<Post> posts = await _post.GetPostsAsync(options, count);
+            IEnumerable<Comment> comments = await _comment.GetCommentsAsync(options, count);
 
-            return (recentPosts, recentComments);
+            return (posts, comments);
         }
     }
 }

@@ -1,37 +1,53 @@
+@model Web.Models.Admin.IndexViewModel
+
 <div class="recent-posts">
     <h2>Recent Posts</h2>
     <div class="row">
-        @for(int i = 0; i <= 5; i++)
+        @if(Model.Posts == null || Model.Posts.Count() == 0)
         {
-            <div class="post col">
-                <h3 title="Post Title">Post Title</h3>
-                <span>@DateTime.Now</span>
-                <p class="content">Lorem ipsumLorem ipsumLorem ipsumLorem ipsum
-                Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
-                Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
-                Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
-                Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
-                Lorem ipsum</p>
-            </div>
+            <h3>No posts.</h3>
+        }
+        else 
+        {
+            foreach(var post in Model.Posts)
+            {
+                <div class="post col">
+                    <h3 title="Post Title">Post Title</h3>
+                    <span>@DateTime.Now</span>
+                    <p class="content">Lorem ipsumLorem ipsumLorem ipsumLorem ipsum
+                    Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
+                    Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
+                    Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
+                    Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
+                    Lorem ipsum</p>
+                </div>
+            }
         }
     </div>
 </div>
 <div class="recent-comments">
     <h2>Recent Comments</h2>
     <div class="row">
-        @for(int i = 0; i <= 5; i++)
+        @if(Model.Comments == null || Model.Comments.Count() == 0)
         {
-            <div class="comment col">
-                <h3>Post Title</h3>
-                <span>Author</span>
-                <span>@DateTime.Now</span>
-                <p class="content">Lorem ipsumLorem ipsumLorem ipsumLorem ipsum
-                Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
-                Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
-                Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
-                Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
-                Lorem ipsum</p>
-            </div>
+            <h3>No recent comments.</h3>
+        }
+        else
+        {
+            foreach(var comment in Model.Comments)
+            {
+                <div class="comment col">
+                    <h3>Post Title</h3>
+                    <span>Author</span>
+                    <span>@DateTime.Now</span>
+                    <p class="content">Lorem ipsumLorem ipsumLorem ipsumLorem ipsum
+                    Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
+                    Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
+                    Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
+                    Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
+                    Lorem ipsum</p>
+                </div>
+            }
         }
     </div>
 </div>

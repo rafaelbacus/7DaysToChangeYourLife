@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using AutoMapper;
 using BLL;
 using Model;
+using Web.Models.Admin;
 
 namespace Web.Controllers
 {
@@ -12,26 +14,31 @@ namespace Web.Controllers
     public class AdminController : Controller
     {
         private BlogBLL _blog;
+        private IMapper _mapper;
 
-        public AdminController(BlogBLL blog)
+        public AdminController(BlogBLL blog,
+                               IMapper mapper)
         {
             _blog = blog;
+            _mapper = mapper;
         }
 
         public async Task<IActionResult> Index()
         {
-            IEnumerable<Post> recentPosts = null;
+            IndexViewModel model = new IndexViewModel();
 
             try
             {
-                // recentPosts = await _blog.GetRecentPostsAsync(count: 5);            
+                (IEnumerable<Post> posts, IEnumerable<Comment> comments) recentResults = await _blog.GetRecentPostsAndCommentsAsync(count: 5);
+                model.Posts = _mapper.Map<IEnumerable<Post>, IEnumerable<PostViewModel>>(recentResults.posts);
+                model.Comments = _mapper.Map<IEnumerable<Comment>, IEnumerable<CommentViewModel>>(recentResults.comments);
             }
             catch (Exception ex)
             {
                 // Log Exception
             }
 
-            return View(recentPosts);
+            return View(model);
         }
     }
 }
