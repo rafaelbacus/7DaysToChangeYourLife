@@ -16,6 +16,7 @@ namespace Web.Data
         {
             using (var context = new BlogContext(serviceProvider.GetRequiredService<DbContextOptions<BlogContext>>()))
             {
+                await context.Database.EnsureCreatedAsync();
                 if (await context.Users.AnyAsync(u => u.UserName == Constants.AdminRole))
                 {
                     return;

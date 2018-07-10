@@ -12,6 +12,7 @@ using DAL;
 using Model;
 using Web.Data;
 using Web.Services;
+using Web.Models;
 
 namespace Web
 {
@@ -58,7 +59,13 @@ namespace Web
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             
-            services.AddAutoMapper();
+            // AutoMapper Configuration
+            var config = new AutoMapper.MapperConfiguration(cfg => 
+            {
+                cfg.AddProfile<MapperProfile>();
+            });
+            IMapper mapper = config.CreateMapper();
+            services.AddSingleton(mapper);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

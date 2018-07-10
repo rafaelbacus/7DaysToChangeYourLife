@@ -5,7 +5,9 @@
     <div class="row">
         @if(Model.Posts == null || Model.Posts.Count() == 0)
         {
-            <h3>No posts.</h3>
+            <div class="col">
+                <h3>No posts.</h3>
+            </div>
         }
         else 
         {
@@ -30,7 +32,9 @@
     <div class="row">
         @if(Model.Comments == null || Model.Comments.Count() == 0)
         {
-            <h3>No recent comments.</h3>
+            <div class="col">
+                <h3>No recent comments.</h3>
+            </div>
         }
         else
         {
