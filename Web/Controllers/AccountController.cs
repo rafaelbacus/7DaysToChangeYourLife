@@ -1,10 +1,10 @@
-using Web.Models.Account;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Identity;
-using Model;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Model;
+using Web.ViewModels.Account;
 
 namespace Web.Controllers
 {
@@ -68,6 +68,14 @@ namespace Web.Controllers
             }
 
             return View(model);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+
+            return RedirectToAction(nameof(HomeController.Index), "Home");
         }
 
         [HttpGet]

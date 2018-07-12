@@ -6,7 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
 using BLL;
 using Model;
-using Web.Models.Admin;
+using Web.ViewModels.Admin;
+using Web.ViewModels.Post;
 
 namespace Web.Controllers
 {
@@ -25,7 +26,7 @@ namespace Web.Controllers
 
         public async Task<IActionResult> Index()
         {
-            IndexViewModel model = new IndexViewModel();
+            AdminViewModel model = new AdminViewModel();
 
             try
             {

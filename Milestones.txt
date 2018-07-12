@@ -7,8 +7,8 @@ Build DI service
 
 Admin Index
     Blog
-        5 most recent posts
-		5 most recent comments
+        5 most recent posts :) 
+		5 most recent comments :)
         Post Count
     Post
         10 most recent posts

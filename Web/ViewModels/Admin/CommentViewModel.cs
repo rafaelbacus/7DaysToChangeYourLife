@@ -1,6 +1,7 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 
-namespace Web.Models.Admin
+namespace Web.ViewModels.Admin
 {
     public class CommentViewModel
     {

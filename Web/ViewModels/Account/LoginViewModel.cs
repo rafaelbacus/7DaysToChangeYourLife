@@ -1,9 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Identity;
-using Model;
 
-namespace Web.Models.Account
+namespace Web.ViewModels.Account
 {
     public class LoginViewModel 
     {

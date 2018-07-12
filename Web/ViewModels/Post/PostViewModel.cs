@@ -1,6 +1,6 @@
 using System;
 
-namespace Web.Models.Admin
+namespace Web.ViewModels.Post
 {
     public class PostViewModel
     {

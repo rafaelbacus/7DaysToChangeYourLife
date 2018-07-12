@@ -1,7 +1,8 @@
 using System;
 using AutoMapper;
 using Model;
-using Web.Models.Admin;
+using Web.ViewModels.Admin;
+using Web.ViewModels.Post;
 
 namespace Web.Models
 {
