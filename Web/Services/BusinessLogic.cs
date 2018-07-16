@@ -13,6 +13,7 @@ namespace Web.Services
         {
             services.Configure<AppSettings>(configuration);
             services.AddScoped<BlogBLL>();
+            services.AddScoped<PostBLL>();
 
             services.Configure<IdentityOptions>(options =>
             {

@@ -21,8 +21,12 @@ namespace Web.Controllers
         [HttpGet]
         public IActionResult Index ()
         {
-            
+            return View();
+        }
 
+        [HttpGet]
+        public IActionResult Add()
+        {
             return View();
         }
     }

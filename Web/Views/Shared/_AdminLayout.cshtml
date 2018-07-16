@@ -29,15 +29,15 @@
                 @if (User.Identity.IsAuthenticated)
                 {
                     <div class="col-xs-12 col-md-2">
-                        <nav class="nav flex-row flex-md-column" style="background-color: purple;">
+                        <nav class="nav flex-row flex-md-column">
                             <a class="nav-link active" href="#">Blog</a>
-                            <a class="nav-link" href="#">Posts</a>
+                            <a class="nav-link" href="/Post/">Posts</a>
                             <a class="nav-link" href="/Account/Logout">Log Out</a>
                         </nav>
                     </div>
                 }
                 <div class="col-xs-12 col">
-                    <main style="background-color: red;">
+                    <main>
                         @RenderBody()
                     </main>
                 </div>
