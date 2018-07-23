@@ -11,7 +11,11 @@ namespace Web.Models
         public MapperProfile()
         {
             Mapper.Initialize(config => {
+                // Post
                 config.CreateMap<Post, PostViewModel>();
+                config.CreateMap<Post, AddPostViewModel>().ReverseMap();
+
+                // Comment
                 config.CreateMap<Comment, CommentViewModel>();
             });
         }

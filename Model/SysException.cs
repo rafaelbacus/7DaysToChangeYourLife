@@ -14,6 +14,18 @@ namespace Model
         public string StackTrace { get; set; }
         public string Url { get; set; }
         public DateTime @DateTime { get; set; }
+
+        public SysException()
+        {
+            
+        }
+
+        public SysException(Exception e)
+        {
+            Message = e.Message;
+            StackTrace = e.StackTrace;
+            @DateTime = DateTime.Now;
+        }
     }
 
     public class SysExceptionConfiguration : IEntityTypeConfiguration<SysException>

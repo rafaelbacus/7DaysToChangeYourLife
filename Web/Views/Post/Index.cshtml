@@ -1,4 +1,29 @@
-<div class="post">
-    <h2>Posts</h2>
-    <a class="btn" href="/Post/Add">Add</a>
+@model IEnumerable<Web.ViewModels.Post.PostViewModel>
+
+<div class="post-index">
+    <div class="row">
+        <div class="col page-header">
+            <h2 class="title">Posts</h2>
+            <a class="btn btn-default btn-add" href="/Post/Add">Add</a>            
+        </div>
+    </div>
+    <div class="row">
+        @if(Model == null || Model.Count() == 0)
+        {
+            <div class="col">
+                <h3>No recent posts.</h3>
+            </div>
+        }
+        else 
+        {
+            foreach(var post in Model)
+            {
+                <div class="col post">
+                    <h3>@post.Title</h3>
+                    <p>@post.RowCreatedDateTime</p>
+                    <p>@post.Content</p>
+                </div>
+            }
+        }
+    </div>
 </div>

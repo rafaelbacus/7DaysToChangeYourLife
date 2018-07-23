@@ -1,0 +1,63 @@
+@using Helper;
+@using Web.Models;
+@{
+    var submitInfo = ViewData[Constants.FormSubmit] != null ? (FormSubmit)ViewData[Constants.FormSubmit] : null;
+}
+
+@if(submitInfo != null)
+{
+    if(submitInfo.Result == null)
+    {
+        // First load 
+        <div class="form-group">
+            <button type="button" class="btn cancel-btn" data-indexUrl="@submitInfo.IndexUrl">Cancel</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    }
+    else
+    {
+        // Form submitted at least once
+        var textColor = submitInfo.Result.Succeeded ? "text-success" : "text-danger";
+
+        <div class="form-group">
+            <p class="@textColor">@submitInfo.Result.Message</p>
+        </div>
+
+        @if(submitInfo.Result.Succeeded)
+        {
+            <div class="form-group">
+                <a class="btn btn-default" href="@submitInfo.IndexUrl">Go back</a>
+            </div>
+        }
+        else
+        {
+            <div class="form-group">
+                <button type="button" class="btn" data-indexUrl="@submitInfo.IndexUrl">Cancel</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        }
+    }
+}
+
+<script>
+    $(".cancel-btn").on("click", function(){
+        //var indexUrl = $(this).data("indexUrl");
+        //var inputs = $("form").find("input:not([type*='hidden'])");
+        alert("Cancel button clicked");
+    });
+</script>
+
+<!-- 1st load
+    set return url on cancel button
+
+Cancel form submission (result may or may not be null)
+    if there is entry 
+        prompt to continue
+    else 
+        redirect
+
+form submitted (result is not null)
+    if successful
+        set green message
+    else
+        set red message -->

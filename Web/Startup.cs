@@ -38,7 +38,8 @@ namespace Web
             });
 
             services.AddDbContext<BlogContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("7DCYL"), o => o.MigrationsAssembly("Web")));
+                options.UseSqlServer(Configuration.GetConnectionString("7DCYL"), o => o.MigrationsAssembly("Web")
+                                                                                       .UseRowNumberForPaging()));
 
             services.AddIdentity<User, Role>()
                     .AddEntityFrameworkStores<BlogContext>()
@@ -47,6 +48,9 @@ namespace Web
             services.AddOptions();
             services.AddBusinessLogicServices(Configuration);
             services.AddDataAccessServices();
+
+            // AppSettings Configuration
+            services.Configure<AppSettings>(Configuration);
 
             var skipHttps = Configuration.GetValue<bool>("LocalTest:skipHTTPS");
             services.Configure<MvcOptions>(options => 

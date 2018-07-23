@@ -1,59 +1,54 @@
 @model Web.ViewModels.Admin.AdminViewModel
 
-<div class="recent-posts">
-    <h2>Recent Posts</h2>
-    <div class="row">
-        @if(Model.Posts == null || Model.Posts.Count() == 0)
-        {
-            <div class="col">
-                <h3>No posts.</h3>
-            </div>
-        }
-        else 
-        {
-            foreach(var post in Model.Posts)
+<div class="admin-index">
+    <div class="recent-posts">
+        <h2>Recent Posts</h2>
+        <div class="row">
+            @if(Model.Posts == null || Model.Posts.Count() == 0)
             {
-                <div class="post col">
-                    <h3 title="Post Title">Post Title</h3>
-                    <span>@DateTime.Now</span>
-                    <p class="content">Lorem ipsumLorem ipsumLorem ipsumLorem ipsum
-                    Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
-                    Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
-                    Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
-                    Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
-                    Lorem ipsum</p>
+                <div class="col">
+                    <h3>No posts.</h3>
                 </div>
             }
-        }
-    </div>
-</div>
-<div class="recent-comments">
-    <h2>Recent Comments</h2>
-    <div class="row">
-        @if(Model.Comments == null || Model.Comments.Count() == 0)
-        {
-            <div class="col">
-                <h3>No recent comments.</h3>
-            </div>
-        }
-        else
-        {
-            foreach(var comment in Model.Comments)
+            else 
             {
-                <div class="comment col">
-                    <h3>Post Title</h3>
-                    <span>Author</span>
-                    <span>@DateTime.Now</span>
-                    <p class="content">Lorem ipsumLorem ipsumLorem ipsumLorem ipsum
-                    Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
-                    Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
-                    Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
-                    Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
-                    Lorem ipsum</p>
+                foreach(var post in Model.Posts)
+                {
+                <div class="col post">
+                        <h3>@post.Title</h3>
+                        <p>@post.RowCreatedDateTime</p>
+                        <p>@post.Content</p>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+    <div class="recent-comments">
+        <h2>Recent Comments</h2>
+        <div class="row">
+            @if(Model.Comments == null || Model.Comments.Count() == 0)
+            {
+                <div class="col">
+                    <h3>No recent comments.</h3>
                 </div>
             }
-        }
+            else
+            {
+                foreach(var comment in Model.Comments)
+                {
+                    <div class="comment col">
+                        <h3>Post Title</h3>
+                        <span>Author</span>
+                        <span>@DateTime.Now</span>
+                        <p class="content">Lorem ipsumLorem ipsumLorem ipsumLorem ipsum
+                        Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
+                        Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
+                        Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
+                        Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
+                        Lorem ipsum</p>
+                    </div>
+                }
+            }
+        </div>
     </div>
 </div>
-
-

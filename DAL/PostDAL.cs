@@ -1,9 +1,10 @@
-using Helper;
-using Microsoft.EntityFrameworkCore;
-using Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Helper;
+using Model;
 
 namespace DAL
 {
@@ -26,6 +27,20 @@ namespace DAL
             return await _context.Posts.OrderBy(options)
                                        .Take(count)
                                        .ToListAsync();
+        }
+
+        public async Task<IEnumerable<Post>> GetPostsAsync(int page, int count)
+        {
+            return await _context.Posts.OrderByDescending(p => p.RowCreatedDateTime)
+                                       .Skip((page - 1) * count)
+                                       .Take(count)
+                                       .ToListAsync();
+        }
+
+        public async Task AddPostAsync(Post post)
+        {
+            _context.Posts.Add(post);
+            await _context.SaveChangesAsync();
         }
     }
 }
