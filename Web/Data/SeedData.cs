@@ -17,7 +17,7 @@ namespace Web.Data
             using (var context = new BlogContext(serviceProvider.GetRequiredService<DbContextOptions<BlogContext>>()))
             {
                 await context.Database.EnsureCreatedAsync();
-                if (await context.Users.AnyAsync(u => u.UserName == Constants.AdminRole))
+                if (await context.Users.AnyAsync(u => u.UserName == Constants.AdminUserName))
                 {
                     return;
                 }
@@ -39,7 +39,7 @@ namespace Web.Data
                     FirstName = "Rafael",
                     LastName = "Bacus",
                     Email = "rafael.bacus@gmail.com",
-                    UserName = Constants.AdminRole,
+                    UserName = Constants.AdminUserName,
                     RowCreatedBy = 1,
                     RowCreatedDateTime = DateTime.Now,
                     RowModifiedBy = 1,

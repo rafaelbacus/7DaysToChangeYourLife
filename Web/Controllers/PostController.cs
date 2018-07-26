@@ -84,7 +84,7 @@ namespace Web.Controllers
                 };
 
                 Result result = new Result();
-
+                
                 try
                 {
                     await _post.AddPostAsync(post);
@@ -103,6 +103,16 @@ namespace Web.Controllers
             }
 
             ViewData[Constants.FormSubmit] = submitInfo;
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            Post post = await _post.GetPostAsync(id);
+
+            var model = _mapper.Map<Post, PostViewModel>(post);
 
             return View(model);
         }

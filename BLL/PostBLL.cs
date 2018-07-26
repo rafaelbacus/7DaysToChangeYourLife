@@ -16,6 +16,11 @@ namespace BLL
             _post = post;
         }
 
+        public async Task<Post> GetPostAsync(int id)
+        {
+            return await _post.GetPostAsync(id);
+        }
+
         public async Task<IEnumerable<Post>> GetRecentPostsAsync(int page = 1, int count = 10)
         {
             return await _post.GetPostsAsync(page, count);
