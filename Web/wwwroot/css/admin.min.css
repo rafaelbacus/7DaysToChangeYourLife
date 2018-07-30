@@ -1,16 +1,1 @@
-.admin .recent-posts .post,
-.admin .recent-comments .comment {
-  min-width: 100%; }
-
-@media (min-width: 1200px) {
-  .admin .recent-posts .post,
-  .admin .recent-comments .comment {
-    min-width: 50%; } }
-
-.admin .page-header .title {
-  display: inline-block; }
-
-.admin .page-header .btn-add {
-  display: inline-block;
-  margin-left: .5rem;
-  margin-bottom: .5rem; }
+.admin .recent-comments .comment,.admin .recent-posts .post{min-width:100%}@media (min-width:1200px){.admin .recent-comments .comment,.admin .recent-posts .post{min-width:50%}}.admin .page-header .title{display:inline-block}.admin .page-header .btn-add{display:inline-block;margin-left:.5rem;margin-bottom:.5rem}

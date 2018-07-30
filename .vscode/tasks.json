@@ -26,6 +26,19 @@
             "problemMatcher": [
                 "$node-sass"
             ]
+        },
+        {
+            "label": "js",
+            "type": "shell",
+            "command": "gulp js",
+            "group": "build",
+            "options": {
+                "cwd": "${workspaceFolder}/Web"
+            }
+            ,
+            "problemMatcher": [
+                "$eslint-compact"
+            ]
         }
     ]
 }
