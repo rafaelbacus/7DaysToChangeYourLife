@@ -42,5 +42,11 @@ namespace DAL
             _context.Posts.Add(post);
             await _context.SaveChangesAsync();
         }
+
+        public async Task EditPostAsync(Post post)
+        {
+            _context.Posts.Update(post);
+            await _context.SaveChangesAsync();
+        }
     }
 }

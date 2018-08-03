@@ -19,7 +19,7 @@
             foreach(var post in Model)
             {
                 <div class="col post">
-                    <h3>@post.Title</h3>
+                    <h3><a asp-controller="Post" asp-action="Edit" asp-route-id="@post.Id">@post.Title</a></h3>
                     <p>@post.RowCreatedDateTime</p>
                     <p>@post.Content</p>
                 </div>

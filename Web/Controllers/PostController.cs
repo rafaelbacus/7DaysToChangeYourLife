@@ -114,9 +114,57 @@ namespace Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
+            ViewData[Constants.FormSubmit] = new FormSubmit
+            {
+                Result = null,
+                IndexUrl = Url.Action(nameof(Index), "Post")
+            };
+
             Post post = await _post.GetPostAsync(id);
 
-            var model = _mapper.Map<Post, PostViewModel>(post);
+            var model = _mapper.Map<Post, EditPostViewModel>(post);
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(EditPostViewModel model)
+        {
+            FormSubmit submitInfo = new FormSubmit
+            {
+                IndexUrl = Url.Action(nameof(Index), "Post")
+            };
+
+            if (ModelState.IsValid)
+            {
+                Post post = await _post.GetPostAsync(model.Id);
+                post.Title = model.Title;
+                post.Content = model.Content;
+
+                Result result = new Result();
+                
+                try
+                {
+                    await _post.EditPostAsync(post);
+                    
+                    result.Succeeded = true;
+                    result.Message = "Post edited.";
+                }
+                catch (Exception ex)
+                {
+                    result.Message = "Unable to edit post at this time.";
+
+                    SysException exception = new SysException(ex)
+                    {
+                        Url = UrlHelper.GetRequestUrl(HttpContext)
+                    };
+                }
+
+                submitInfo.Result = result;
+            }
+
+            ViewData[Constants.FormSubmit] = submitInfo;
 
             return View(model);
         }

@@ -1,10 +1,17 @@
-.admin .recent-posts .post,
-.admin .recent-comments .comment {
+.admin .admin-index .recent-posts .post,
+.admin .admin-index .recent-comments .comment {
   min-width: 100%; }
 
 @media (min-width: 1200px) {
-  .admin .recent-posts .post,
-  .admin .recent-comments .comment {
+  .admin .admin-index .recent-posts .post,
+  .admin .admin-index .recent-comments .comment {
+    min-width: 50%; } }
+
+.admin .post-index .post {
+  min-width: 100%; }
+
+@media (min-width: 1200px) {
+  .admin .post-index .post {
     min-width: 50%; } }
 
 .admin .page-header .title {

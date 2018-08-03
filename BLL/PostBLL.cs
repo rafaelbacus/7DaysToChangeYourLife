@@ -41,5 +41,10 @@ namespace BLL
         {
             await _post.AddPostAsync(post);
         }
+
+        public async Task EditPostAsync(Post post)
+        {
+            await _post.EditPostAsync(post);
+        }
     }
 }
