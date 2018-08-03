@@ -11,6 +11,7 @@ using BLL;
 using Helper;
 using Model;
 using Web.ViewModels.Post;
+using Web.Helpers;
 using Web.Models;
 
 namespace Web.Controllers
@@ -96,7 +97,10 @@ namespace Web.Controllers
                 {
                     result.Message = "Unable to add post at this time.";
 
-                    SysException exception = new SysException(ex);
+                    SysException exception = new SysException(ex)
+                    {
+                        Url = UrlHelper.GetRequestUrl(HttpContext)
+                    };
                 }
 
                 submitInfo.Result = result;

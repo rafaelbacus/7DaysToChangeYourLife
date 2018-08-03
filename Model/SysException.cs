@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Model
 {
-    public class SysException
+    public class SysException : IAudit
     {
         [Key]
         public int Id { get; set; }
@@ -13,7 +13,11 @@ namespace Model
         public string Type { get; set; }
         public string StackTrace { get; set; }
         public string Url { get; set; }
-        public DateTime @DateTime { get; set; }
+
+        public int RowCreatedBy { get; set; } = 1;
+        public DateTime RowCreatedDateTime { get; set; }
+        public int RowModifiedBy { get; set; } = 1;
+        public DateTime RowModifiedDateTime { get; set; }
 
         public SysException()
         {
@@ -23,8 +27,10 @@ namespace Model
         public SysException(Exception e)
         {
             Message = e.Message;
+            Type = e.GetBaseException().GetType().ToString();
             StackTrace = e.StackTrace;
-            @DateTime = DateTime.Now;
+            RowCreatedBy = RowModifiedBy = 1;
+            RowCreatedDateTime = RowModifiedDateTime = DateTime.Now;
         }
     }
 
@@ -36,7 +42,10 @@ namespace Model
             builder.Property(s => s.Type).IsRequired();
             builder.Property(s => s.StackTrace).IsRequired();
             builder.Property(s => s.Url).IsRequired();
-            builder.Property(s => s.DateTime).IsRequired();
+            builder.Property(s => s.RowCreatedBy).IsRequired();
+            builder.Property(s => s.RowCreatedDateTime).IsRequired();
+            builder.Property(s => s.RowModifiedBy).IsRequired();
+            builder.Property(s => s.RowModifiedDateTime).IsRequired();
         }
     }
 }
