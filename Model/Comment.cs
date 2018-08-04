@@ -13,6 +13,7 @@ namespace Model
         public string Author { get; set; }
         public string Content { get; set; }
         public List<Comment> Replies { get; set; }
+        public bool IsActive { get; set; }
 
         public int PostId { get; set; }
         public Post Post { get; set; }
@@ -30,6 +31,8 @@ namespace Model
             builder.HasOne(c => c.Post)
                    .WithMany(p => p.Comments);
             builder.Property(c => c.Content).IsRequired();
+            builder.Property(p => p.IsActive).IsRequired()
+                                             .HasDefaultValue(true);
         }
     }
 }

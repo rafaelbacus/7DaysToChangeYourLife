@@ -12,10 +12,11 @@ namespace Model
         public int Id { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
+        public List<Comment> Comments { get; set; }
+        public bool IsActive { get; set; }
 
         public int BlogId { get; set; }
         public Blog Blog { get; set; }
-        public List<Comment> Comments { get; set; }
 
         public int RowCreatedBy { get; set; }
         public DateTime RowCreatedDateTime { get; set; }
@@ -31,6 +32,8 @@ namespace Model
                    .WithMany(b => b.Posts);
             builder.Property(p => p.Title).IsRequired();
             builder.Property(p => p.Content).IsRequired();
+            builder.Property(p => p.IsActive).IsRequired()
+                                             .HasDefaultValue(true);
         }
     }
 }
