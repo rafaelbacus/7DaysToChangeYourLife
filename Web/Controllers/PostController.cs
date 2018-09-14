@@ -13,10 +13,11 @@ using Model;
 using Web.ViewModels.Post;
 using Web.Helpers;
 using Web.Models;
+using Web.ViewModels.Admin;
 
 namespace Web.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = Constants.AdminRole)]
     public class PostController : Controller
     {
         private AppSettings _appSettings;
@@ -78,8 +79,8 @@ namespace Web.Controllers
                     BlogId = _appSettings.BlogID,
                     Title = model.Title,
                     Content = model.Content,
-                    RowCreatedBy = Convert.ToInt32(_userManager.GetUserId(HttpContext.User)),
-                    RowModifiedBy = Convert.ToInt32(_userManager.GetUserId(HttpContext.User)),
+                    RowCreatedBy = Convert.ToInt32(_userManager.GetUserId(User)),
+                    RowModifiedBy = Convert.ToInt32(_userManager.GetUserId(User)),
                     RowCreatedDateTime = DateTime.Now,
                     RowModifiedDateTime = DateTime.Now
                 };
@@ -121,7 +122,6 @@ namespace Web.Controllers
             };
 
             Post post = await _post.GetPostAsync(id);
-
             var model = _mapper.Map<Post, EditPostViewModel>(post);
 
             return View(model);
@@ -141,6 +141,8 @@ namespace Web.Controllers
                 Post post = await _post.GetPostAsync(model.Id);
                 post.Title = model.Title;
                 post.Content = model.Content;
+                post.RowModifiedBy = Convert.ToInt32(_userManager.GetUserId(User));
+                post.RowModifiedDateTime = DateTime.Now;
 
                 Result result = new Result();
                 
@@ -167,6 +169,138 @@ namespace Web.Controllers
             ViewData[Constants.FormSubmit] = submitInfo;
 
             return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id = 0)
+        {
+            ViewData[Constants.FormSubmit] = new FormSubmit
+            {
+                Id = id,
+                Result = null,
+                CancelUrl = Url.Action(nameof(Edit), "Post", new { id }),
+                DeleteUrl = Url.Action(nameof(Delete), "Post", new { id }),
+                IndexUrl = Url.Action(nameof(Index), "Post")
+            };
+
+            var post = await _post.GetPostAndCommentsAsync(id);
+
+            DeletePostViewModel model = new DeletePostViewModel
+            {
+                Id = id,
+                Title = post.Title,
+                Content = post.Content,
+                RowCreatedDateTime = post.RowCreatedDateTime,
+                RowModifiedDateTime = post.RowModifiedDateTime
+            };
+            if (post.Comments != null && post.Comments.Count() != 0)
+            {
+                model.Comments = new List<CommentViewModel>();
+
+                for (int i = 0; i < post.Comments.Count(); i++)
+                {
+                    var comment = post.Comments.ElementAt(i);
+
+                    var commentViewModel = _mapper.Map<Comment, CommentViewModel>(comment);
+                    model.Comments.Add(commentViewModel);
+
+                    if (comment.Replies != null & comment.Replies.Count() != 0)
+                    {
+                        model.Comments.ElementAt(i).Replies = new List<CommentViewModel>();
+
+                        for (int j = 0; j < comment.Replies.Count(); j++)
+                        {
+                            var reply = comment.Replies.ElementAt(j);
+
+                            var tempReply = _mapper.Map<Comment, CommentViewModel>(reply);
+                            model.Comments.ElementAt(i).Replies.Add(tempReply);
+                        }
+                    }
+                }
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(DeletePostViewModel model)
+        {
+            Result result = new Result(false, "Unable to delete post at this time.");
+
+            // if(ModelState.IsValid)
+            // {
+            //     Post post = await _post.GetPostAndCommentsAsync(model.Id);
+            //     post.IsActive = false;
+            //     post.RowModifiedBy = Convert.ToInt32(_userManager.GetUserId(User));
+            //     post.RowModifiedDateTime = DateTime.Now;
+
+            //     if(post.Comments != null && post.Comments.Count() != 0)
+            //     {
+            //         foreach (var comment in post.Comments)
+            //         {
+            //             comment.IsActive = false;
+            //             comment.RowModifiedBy = post.RowModifiedBy;
+            //             comment.RowModifiedDateTime = post.RowModifiedDateTime;
+
+            //             if (comment.Replies != null && comment.Replies.Count() != 0)
+            //             {
+            //                 foreach (var reply in comment.Replies)
+            //                 {
+            //                     reply.IsActive = false;
+            //                     reply.RowModifiedBy = post.RowModifiedBy;
+            //                     reply.RowModifiedDateTime = post.RowModifiedDateTime;
+            //                 }
+            //             }
+            //         }
+            //     }
+
+            //     try
+            //     {
+            //         await _post.EditPostAsync(post);
+                    
+            //         result.Succeeded = true;
+            //         result.Message = "Post deleted.";
+            //     }
+            //     catch (Exception ex)
+            //     {
+            //         result.Message = "Unable to delete post at this time.";
+
+            //         SysException exception = new SysException(ex)
+            //         {
+            //             Url = UrlHelper.GetRequestUrl(HttpContext)
+            //         };
+            //     }
+            // }
+
+            return Json(result);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> HardDelete(int id = 0)
+        {
+            Result result = new Result(false, "Unable to delete post at this time.");
+
+            if(id != 0)
+            {
+                try
+                {
+                    await _post.DeletePostAsync(id);
+                    
+                    result.Succeeded = true;
+                    result.Message = "Post deleted.";
+                }
+                catch (Exception ex)
+                {
+                    result.Message = "Unable to delete post at this time.";
+
+                    SysException exception = new SysException(ex)
+                    {
+                        Url = UrlHelper.GetRequestUrl(HttpContext)
+                    };
+                }
+            }
+
+            return Json(new { result });
         }
     }
 }

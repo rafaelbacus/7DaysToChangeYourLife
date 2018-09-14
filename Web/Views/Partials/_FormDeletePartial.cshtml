@@ -1,0 +1,15 @@
+@using Helper;
+@using Web.Models;
+@{
+    var submitInfo = ViewData[Constants.FormSubmit] != null ? (FormSubmit)ViewData[Constants.FormSubmit] : null;
+}
+
+@if(submitInfo != null)
+{
+    <span class="msg"></span>
+    <div class="btn-grp-delete">
+        <a class="btn btn-default d-none btn-delete-back" href="@submitInfo.IndexUrl">Go back</a>
+        <a class="btn btn-default btn-delete-cancel" href="@submitInfo.CancelUrl">Cancel</a>
+        <button class="btn btn-danger btn-delete-yes" type="button" data-id="@submitInfo.Id">Yes</button>  
+    </div>
+}

@@ -1,7 +1,12 @@
 @model Web.ViewModels.Post.EditPostViewModel
 
-<div class="post-add">
-    <h2>Edit @Model.Title</h2>
+<div class="post-edit">
+    <div class="row">
+        <div class="col-md-8 col-lg-9 d-flex justify-content-between align-items-center">
+            <h2>Edit @Model.Title</h2>
+            <a class="btn btn-danger" asp-controller="Post" asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
+        </div>
+    </div>
     <div class="row">
         <div class="col col-md-8 col-lg-9">
             <form asp-action="Edit" asp-controller="Post" asp-anti-forgery="true" method="POST">

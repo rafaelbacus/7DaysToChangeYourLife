@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using AutoMapper;
 using Model;
 using Web.ViewModels.Admin;
@@ -17,6 +18,7 @@ namespace Web.Models
 
                 // Comment
                 config.CreateMap<Comment, CommentViewModel>();
+                config.CreateMap<IEnumerable<Comment>, IEnumerable<CommentViewModel>>();
             });
         }
     }

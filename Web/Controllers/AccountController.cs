@@ -37,7 +37,13 @@ namespace Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
         {
+            if (string.IsNullOrWhiteSpace(returnUrl))
+            {
+                returnUrl = Url.Action("Index", "Admin");
+            }
+
             ViewData["ReturnUrl"] = returnUrl;
+
             if (ModelState.IsValid)
             {
                 //Check if user exists

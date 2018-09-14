@@ -37,6 +37,14 @@ namespace DAL
                                        .ToListAsync();
         }
 
+        public async Task<Post> GetPostAndCommentsAsync(int id)
+        {
+            return await _context.Posts.Where(p => p.Id == id)
+                                       .Include(p => p.Comments)
+                                          .ThenInclude(c => c.Replies)
+                                       .SingleOrDefaultAsync();
+        }
+
         public async Task AddPostAsync(Post post)
         {
             _context.Posts.Add(post);
@@ -46,6 +54,13 @@ namespace DAL
         public async Task EditPostAsync(Post post)
         {
             _context.Posts.Update(post);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task DeletePostAsync(int id)
+        {
+            var post = await GetPostAsync(id);
+            _context.Posts.Remove(post);
             await _context.SaveChangesAsync();
         }
     }

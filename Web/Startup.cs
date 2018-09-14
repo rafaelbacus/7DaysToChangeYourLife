@@ -13,6 +13,8 @@ using Model;
 using Web.Data;
 using Web.Services;
 using Web.Models;
+using Microsoft.AspNetCore.ResponseCompression;
+using System.IO.Compression;
 
 namespace Web
 {
@@ -27,7 +29,6 @@ namespace Web
         private IConfiguration Configuration { get; }
         private IHostingEnvironment Environment { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<CookiePolicyOptions>(options =>
@@ -52,9 +53,11 @@ namespace Web
             // AppSettings Configuration
             services.Configure<AppSettings>(Configuration);
 
-            var skipHttps = Configuration.GetValue<bool>("LocalTest:skipHTTPS");
-            services.Configure<MvcOptions>(options => 
+            var skipHttps = Configuration.GetValue<bool>("SkipHTTPS");
+            services.Configure<MvcOptions>(options =>
             {
+                // Set LocalTest:skipHTTPS to true to skip SSL requrement in 
+                // debug mode. This is useful when not using Visual Studio.
                 if (Environment.IsDevelopment() && !skipHttps)
                 {
                     options.Filters.Add(new RequireHttpsAttribute());
@@ -70,10 +73,21 @@ namespace Web
             });
             IMapper mapper = config.CreateMapper();
             services.AddSingleton(mapper);
+
+            // Response Compression
+            services.Configure<GzipCompressionProviderOptions>(options => 
+            {
+                options.Level = CompressionLevel.Optimal;
+            });
+            services.AddResponseCompression(options => 
+            {
+                options.EnableForHttps = true; //Remove this during deployment
+                options.Providers.Add<GzipCompressionProvider>();
+                options.MimeTypes = ResponseCompressionDefaults.MimeTypes;
+            });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider) 
         {
             if (env.IsDevelopment())
             {
@@ -89,13 +103,9 @@ namespace Web
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseAuthentication();
-
+            app.UseResponseCompression();
             app.UseMvc(routes =>
             {
-                // routes.MapRoute(
-                //     name: "login",
-                //     template: "login",
-                //     defaults: new { controller = "Account", action = "Login" });
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");

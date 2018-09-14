@@ -1,0 +1,47 @@
+@using Helper;
+@using Web.Models;
+@model Web.ViewModels.Post.DeletePostViewModel
+
+<div class="post-delete">
+    <div class="row">
+        <div class="col-md-8 col-lg-9 d-flex justify-content-between align-items-center">
+            <h2>Delete @Model.Title?</h2>
+            <div class="d-flex justify-content-end align-items-center">
+                <partial name="~/Views/Partials/_FormDeletePartial.cshtml" view-data="ViewData"/>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-md-8 col-lg-9">
+            <p rows="5">@Model.Content</p>
+        </div>
+    </div>
+    @if(Model.Comments != null && Model.Comments.Count() != 0)
+    {
+        <div class="row">
+            <div class="col col-md-8 col-lg-9">
+                <label asp-for="Comments"></label>
+                @foreach(var comment in Model.Comments)
+                {
+                    <div class="comment">
+                        <p>@comment.Author</p>
+                        <p>@comment.</p>
+                        <p>@comment.Content</p>
+
+                        @if(comment.Replies != null && comment.Replies.Count() != 0)
+                        {
+                            foreach(var reply in comment.Replies)
+                            {
+                                <div class="reply">
+                                    <label asp-for="Comments.First().Replies"></label>
+                                    <p>@reply.Author</p>
+                                    <p>@reply.Content</p>
+                                </div>
+                            }
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>

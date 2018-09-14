@@ -8,10 +8,11 @@ using BLL;
 using Model;
 using Web.ViewModels.Admin;
 using Web.ViewModels.Post;
+using Helper;
 
 namespace Web.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = Constants.AdminRole)]
     public class AdminController : Controller
     {
         private BlogBLL _blog;

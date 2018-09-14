@@ -12,7 +12,7 @@ namespace Model
         public int Id { get; set; }
         public string Author { get; set; }
         public string Content { get; set; }
-        public List<Comment> Replies { get; set; }
+        public IEnumerable<Comment> Replies { get; set; }
         public bool IsActive { get; set; }
 
         public int PostId { get; set; }

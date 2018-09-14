@@ -12,7 +12,7 @@ namespace Model
         public int Id { get; set; }
         public string Name { get; set; }
         public string Url { get; set; }
-        public List<Post> Posts { get; set; }
+        public IEnumerable<Post> Posts { get; set; }
 
         public int RowCreatedBy { get; set; }
         public DateTime RowCreatedDateTime { get; set; }
