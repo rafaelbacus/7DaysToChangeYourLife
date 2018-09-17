@@ -47,4 +47,6 @@ gulp.task('js', function(){
                .pipe(gulp.dest(jsOutput));
 });
 
+gulp.task('scripts',['css', 'js'], function(){ return; });
+
 //npm config set strict-ssl true

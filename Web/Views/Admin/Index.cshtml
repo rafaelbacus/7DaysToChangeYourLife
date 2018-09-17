@@ -17,7 +17,7 @@
                 <div class="col post">
                         <h3>@post.Title</h3>
                         <p>@post.RowCreatedDateTime</p>
-                        <p>@post.Content</p>
+                        <p>@Html.Raw(post.Content)</p>
                     </div>
                 }
             }
