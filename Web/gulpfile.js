@@ -12,8 +12,8 @@ var cssmin = require('gulp-cssmin');
 
 var cssInput = 'Styles/*.scss';
 var cssOutput = 'wwwroot/css/';
-var sassOptions = {style: 'expanded'};
-var autoprefixerOptions = {browsers: ['last 10 versions']};
+var sassOptions = {outputStyle: 'expanded'};
+var autoprefixerOptions = {browsers: ['last 5 versions']};
 var renameOptions = {suffix: '.min'};
 
 gulp.task('css', function(){

@@ -1,23 +1,31 @@
 .admin .admin-index .recent-posts .post,
 .admin .admin-index .recent-comments .comment {
-  min-width: 100%; }
+  min-width: 100%;
+}
 
 @media (min-width: 1200px) {
   .admin .admin-index .recent-posts .post,
   .admin .admin-index .recent-comments .comment {
-    min-width: 50%; } }
+    min-width: 50%;
+  }
+}
 
 .admin .post-index .post {
-  min-width: 100%; }
+  min-width: 100%;
+}
 
 @media (min-width: 1200px) {
   .admin .post-index .post {
-    min-width: 50%; } }
+    min-width: 50%;
+  }
+}
 
 .admin .page-header .title {
-  display: inline-block; }
+  display: inline-block;
+}
 
 .admin .page-header .btn-add {
   display: inline-block;
   margin-left: .5rem;
-  margin-bottom: .5rem; }
+  margin-bottom: .5rem;
+}
