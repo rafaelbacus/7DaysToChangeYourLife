@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<Web.ViewModels.Post.PostViewModel>
 
+<link rel="stylesheet" href="~/css/home.css"> 
 <div class="home-index">
     <div class="row">
         @if(Model == null || Model.Count() == 0)
@@ -12,10 +13,17 @@
         {
             foreach(var post in Model)
             {
-                <div class="col post">
-                    <h3>@post.Title</h3>
-                    <p>@post.RowCreatedDateTime</p>
-                    <p>@post.Content</p>
+                <div class="col-12">
+                    <div class="post">
+                        <a asp-controller="Post" asp-action="Detail" asp-route-id="@post.Id" class="d-flex flex-column">
+                            <h3 class="title">@post.Title</h3>
+                            <p class="date">@post.RowCreatedDateTime.ToString("MMM dd, yyyy HH:mm:ss")</p>
+                            <span class="content flex-grow-1">
+                                @Html.Raw(post.Content)
+                            </span>
+                            <span class="text-right read-more">Read more...</span>
+                        </a>
+                    </div>
                 </div>
             }
         }

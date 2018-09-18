@@ -1,0 +1,41 @@
+.home-index .post {
+  margin-bottom: 15px;
+  height: 400px;
+  padding: 15px 20px;
+  border: 1px solid #ccc;
+  -webkit-transition: -webkit-box-shadow 0.6s ease;
+  transition: -webkit-box-shadow 0.6s ease;
+  -o-transition: box-shadow 0.6s ease;
+  transition: box-shadow 0.6s ease;
+  transition: box-shadow 0.6s ease, -webkit-box-shadow 0.6s ease;
+}
+
+.home-index .post a {
+  position: relative;
+  height: 100%;
+  color: #333;
+}
+
+.home-index .post a:hover {
+  text-decoration: none;
+}
+
+.home-index .post a .title {
+  color: #007bff;
+}
+
+.home-index .post a .content {
+  overflow-y: hidden;
+}
+
+.home-index .post a .read-more {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.home-index .post:hover {
+  -webkit-box-shadow: 0px 5px 10px #ccc;
+          box-shadow: 0px 5px 10px #ccc;
+  cursor: pointer;
+}

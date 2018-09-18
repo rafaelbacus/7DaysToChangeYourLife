@@ -1,39 +1,37 @@
 .admin {
-    .admin-index {
-        .recent-posts .post,
-        .recent-comments .comment {
-            min-width: 100%;
-        }
-
-        @media (min-width: 1200px) { 
-            .recent-posts .post,
-            .recent-comments .comment {
-                min-width: 50%;
-            }        
-        }
-    }
-
-    .post-index {
-        .row:nth-of-type(2) div[class^="col"] {
+    .admin-index, .post-index {
+        .posts div[class^="col"] {
             margin-bottom: 15px;
 
             .post {
-                height: 100%;
+                height: 350px;
                 padding: 15px 20px;
                 border: 1px solid #ccc;
                 transition: box-shadow 0.6s ease;
 
-                .title {
-                    color: #007bff;
-                }
-
                 a {
+                    position: relative;
+                    height: 100%;
                     color: #333;
                     &:hover {
                         text-decoration: none;
                     }
-                }
+
+                    .title {
+                        color: #007bff;
+                    }
     
+                    .content {
+                        overflow-y: hidden;
+                    }
+    
+                    .read-more {
+                        position: absolute;
+                        bottom: 0;
+                        right: 0;
+                    }
+                }
+
                 &:hover {
                     box-shadow: 0px 5px 10px #ccc;
                     cursor: pointer;
@@ -42,9 +40,15 @@
         }
 
         @media (min-width: 1200px) { 
-            .row:nth-of-type(2) div[class^="col"]{
+            .posts div[class^="col"]{
                 margin-bottom: 30px;
             }     
+        }
+    }
+
+    .post-add, .post-edit {
+        .post-editor {
+            min-height: 500px;
         }
     }
 

@@ -42,10 +42,25 @@ namespace Web.Controllers
         {
             IEnumerable<PostViewModel> model = null;
 
-            var recentPosts = await _post.GetRecentPostsAsync(5); 
+            var recentPosts = await _post.GetRecentPostsAsync(count: 5); 
             if (recentPosts != null && recentPosts.Count() != 0)
             {
                 model = _mapper.Map<IEnumerable<Post>, IEnumerable<PostViewModel>>(recentPosts);
+            }
+
+            return View(model);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> Detail(int id)
+        {
+            var model = new PostViewModel();
+
+            var post = await _post.GetPostAndCommentsAsync(id);
+            if (post != null)
+            {
+                model = _mapper.Map<Post, PostViewModel>(post);
             }
 
             return View(model);

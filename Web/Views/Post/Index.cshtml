@@ -7,7 +7,7 @@
             <a class="btn btn-default btn-add" href="/Post/Add">Add</a>            
         </div>
     </div>
-    <div class="row">
+    <div class="row posts">
         @if(Model == null || Model.Count() == 0)
         {
             <div class="col">
@@ -18,14 +18,15 @@
         {
             foreach(var post in Model)
             {
-                <div class="col-xs-12 col-xl-4 align-content-stretch">
+                <div class="col-12 col-xl-4">
                     <div class="post">
-                        <a asp-controller="Post" asp-action="Edit" asp-route-id="@post.Id">
+                        <a asp-controller="Post" asp-action="Detail" asp-route-id="@post.Id" class="d-flex flex-column">
                             <h3 class="title">@post.Title</h3>
                             <p class="date">@post.RowCreatedDateTime.ToString("MMM dd, yyyy HH:mm:ss")</p>
-                            <span class="content">
+                            <span class="content flex-grow-1">
                                 @Html.Raw(post.Content)
                             </span>
+                            <span class="text-right read-more">Read more...</span>
                         </a>
                     </div>
                 </div>

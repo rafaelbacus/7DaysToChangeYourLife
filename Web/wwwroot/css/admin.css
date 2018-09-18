@@ -1,21 +1,9 @@
-.admin .admin-index .recent-posts .post,
-.admin .admin-index .recent-comments .comment {
-  min-width: 100%;
-}
-
-@media (min-width: 1200px) {
-  .admin .admin-index .recent-posts .post,
-  .admin .admin-index .recent-comments .comment {
-    min-width: 50%;
-  }
-}
-
-.admin .post-index .row:nth-of-type(2) div[class^="col"] {
+.admin .admin-index .posts div[class^="col"], .admin .post-index .posts div[class^="col"] {
   margin-bottom: 15px;
 }
 
-.admin .post-index .row:nth-of-type(2) div[class^="col"] .post {
-  height: 100%;
+.admin .admin-index .posts div[class^="col"] .post, .admin .post-index .posts div[class^="col"] .post {
+  height: 350px;
   padding: 15px 20px;
   border: 1px solid #ccc;
   -webkit-transition: -webkit-box-shadow 0.6s ease;
@@ -25,28 +13,44 @@
   transition: box-shadow 0.6s ease, -webkit-box-shadow 0.6s ease;
 }
 
-.admin .post-index .row:nth-of-type(2) div[class^="col"] .post .title {
-  color: #007bff;
-}
-
-.admin .post-index .row:nth-of-type(2) div[class^="col"] .post a {
+.admin .admin-index .posts div[class^="col"] .post a, .admin .post-index .posts div[class^="col"] .post a {
+  position: relative;
+  height: 100%;
   color: #333;
 }
 
-.admin .post-index .row:nth-of-type(2) div[class^="col"] .post a:hover {
+.admin .admin-index .posts div[class^="col"] .post a:hover, .admin .post-index .posts div[class^="col"] .post a:hover {
   text-decoration: none;
 }
 
-.admin .post-index .row:nth-of-type(2) div[class^="col"] .post:hover {
+.admin .admin-index .posts div[class^="col"] .post a .title, .admin .post-index .posts div[class^="col"] .post a .title {
+  color: #007bff;
+}
+
+.admin .admin-index .posts div[class^="col"] .post a .content, .admin .post-index .posts div[class^="col"] .post a .content {
+  overflow-y: hidden;
+}
+
+.admin .admin-index .posts div[class^="col"] .post a .read-more, .admin .post-index .posts div[class^="col"] .post a .read-more {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.admin .admin-index .posts div[class^="col"] .post:hover, .admin .post-index .posts div[class^="col"] .post:hover {
   -webkit-box-shadow: 0px 5px 10px #ccc;
           box-shadow: 0px 5px 10px #ccc;
   cursor: pointer;
 }
 
 @media (min-width: 1200px) {
-  .admin .post-index .row:nth-of-type(2) div[class^="col"] {
+  .admin .admin-index .posts div[class^="col"], .admin .post-index .posts div[class^="col"] {
     margin-bottom: 30px;
   }
+}
+
+.admin .post-add .post-editor, .admin .post-edit .post-editor {
+  min-height: 500px;
 }
 
 .admin .post-delete .btn-grp-delete .btn:not(:last-of-type) {

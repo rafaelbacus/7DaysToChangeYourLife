@@ -20,13 +20,13 @@ gulp.task('css', function(){
     gulp.src(cssOutput + "*", { read : false})
         .pipe(clean());
 
-    gulp.src(cssInput)
-        .pipe(sass(sassOptions))
-        .pipe(autoprefixer(autoprefixerOptions))
-        .pipe(gulp.dest(cssOutput))
-        .pipe(cssmin({level: 2}))
-        .pipe(rename(renameOptions))
-        .pipe(gulp.dest(cssOutput));
+    return gulp.src(cssInput)
+               .pipe(sass(sassOptions))
+               .pipe(autoprefixer(autoprefixerOptions))
+               .pipe(gulp.dest(cssOutput))
+               .pipe(cssmin({level: 2}))
+               .pipe(rename(renameOptions))
+               .pipe(gulp.dest(cssOutput));
 });
 
 var jsInput = 'Scripts/*.js';
@@ -47,6 +47,8 @@ gulp.task('js', function(){
                .pipe(gulp.dest(jsOutput));
 });
 
-gulp.task('scripts',['css', 'js'], function(){ return; });
+gulp.task('scripts',['css', 'js'], function(){ 
+    console.log("Gulp [css, js] finished."); return; 
+});
 
 //npm config set strict-ssl true
