@@ -9,9 +9,11 @@ namespace Web.ViewModels.Admin
         public int Id { get; set; }
 
         [Display(Name = "Author")]
+        [MaxLength(50, ErrorMessage = "Max length of {0} characters.")]
         public string Author { get; set; } = "Anonymous";
 
         [Display(Name = "Content")]
+        [MaxLength(300, ErrorMessage = "Max length of {0} characters.")]
         public string Content { get; set; }
 
         [Display(Name = "Replies")]
