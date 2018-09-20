@@ -20,7 +20,7 @@
             {
                 <div class="col-12 col-xl-4">
                     <div class="post">
-                        <a asp-controller="Post" asp-action="Detail" asp-route-id="@post.Id" class="d-flex flex-column">
+                        <a asp-controller="Post" asp-action="Edit" asp-route-id="@post.Id" class="d-flex flex-column">
                             <h3 class="title">@post.Title</h3>
                             <p class="date">@post.RowCreatedDateTime.ToString("MMM dd, yyyy HH:mm:ss")</p>
                             <span class="content flex-grow-1">

@@ -17,9 +17,9 @@ Admin Index
 WYSIWYG
 
 Post
-    Add
-    Edit
-    Delete
+    Add :)
+    Edit :)
+    Delete :)
 
 Comment
     Add 

@@ -242,50 +242,50 @@ namespace Web.Controllers
         {
             Result result = new Result(false, "Unable to delete post at this time.");
 
-            // if(ModelState.IsValid)
-            // {
-            //     Post post = await _post.GetPostAndCommentsAsync(model.Id);
-            //     post.IsActive = false;
-            //     post.RowModifiedBy = Convert.ToInt32(_userManager.GetUserId(User));
-            //     post.RowModifiedDateTime = DateTime.Now;
+            if(ModelState.IsValid)
+            {
+                Post post = await _post.GetPostAndCommentsAsync(model.Id);
+                post.IsActive = false;
+                post.RowModifiedBy = Convert.ToInt32(_userManager.GetUserId(User));
+                post.RowModifiedDateTime = DateTime.Now;
 
-            //     if(post.Comments != null && post.Comments.Count() != 0)
-            //     {
-            //         foreach (var comment in post.Comments)
-            //         {
-            //             comment.IsActive = false;
-            //             comment.RowModifiedBy = post.RowModifiedBy;
-            //             comment.RowModifiedDateTime = post.RowModifiedDateTime;
+                if(post.Comments != null && post.Comments.Count() != 0)
+                {
+                    foreach (var comment in post.Comments)
+                    {
+                        comment.IsActive = false;
+                        comment.RowModifiedBy = post.RowModifiedBy;
+                        comment.RowModifiedDateTime = post.RowModifiedDateTime;
 
-            //             if (comment.Replies != null && comment.Replies.Count() != 0)
-            //             {
-            //                 foreach (var reply in comment.Replies)
-            //                 {
-            //                     reply.IsActive = false;
-            //                     reply.RowModifiedBy = post.RowModifiedBy;
-            //                     reply.RowModifiedDateTime = post.RowModifiedDateTime;
-            //                 }
-            //             }
-            //         }
-            //     }
+                        if (comment.Replies != null && comment.Replies.Count() != 0)
+                        {
+                            foreach (var reply in comment.Replies)
+                            {
+                                reply.IsActive = false;
+                                reply.RowModifiedBy = post.RowModifiedBy;
+                                reply.RowModifiedDateTime = post.RowModifiedDateTime;
+                            }
+                        }
+                    }
+                }
 
-            //     try
-            //     {
-            //         await _post.EditPostAsync(post);
+                try
+                {
+                    await _post.EditPostAsync(post);
                     
-            //         result.Succeeded = true;
-            //         result.Message = "Post deleted.";
-            //     }
-            //     catch (Exception ex)
-            //     {
-            //         result.Message = "Unable to delete post at this time.";
+                    result.Succeeded = true;
+                    result.Message = "Post deleted.";
+                }
+                catch (Exception ex)
+                {
+                    result.Message = "Unable to delete post at this time.";
 
-            //         SysException exception = new SysException(ex)
-            //         {
-            //             Url = UrlHelper.GetRequestUrl(HttpContext)
-            //         };
-            //     }
-            // }
+                    SysException exception = new SysException(ex)
+                    {
+                        Url = UrlHelper.GetRequestUrl(HttpContext)
+                    };
+                }
+            }
 
             return Json(result);
         }

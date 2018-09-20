@@ -74,12 +74,3 @@ html, body {
 .validation-summary-valid span {
   display: none;
 }
-
-/* ------------ Post-Detail ------------ */
-.post-detail .comment-info {
-  margin-top: 5px;
-}
-
-.post-detail .comment-info .character-count {
-  margin-right: 5px;
-}
