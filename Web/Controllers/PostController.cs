@@ -14,6 +14,7 @@ using Web.ViewModels.Post;
 using Web.Helpers;
 using Web.Models;
 using Web.ViewModels.Admin;
+using Web.ViewModels.Comment;
 
 namespace Web.Controllers
 {
@@ -100,7 +101,7 @@ namespace Web.Controllers
                     RowModifiedDateTime = DateTime.Now
                 };
 
-                Result result = new Result();
+                Result result = new Result(false, "Unable to add post at this time.");
                 
                 try
                 {
@@ -111,8 +112,6 @@ namespace Web.Controllers
                 }
                 catch (Exception ex)
                 {
-                    result.Message = "Unable to add post at this time.";
-
                     SysException exception = new SysException(ex)
                     {
                         Url = UrlHelper.GetRequestUrl(HttpContext)
@@ -159,7 +158,7 @@ namespace Web.Controllers
                 post.RowModifiedBy = Convert.ToInt32(_userManager.GetUserId(User));
                 post.RowModifiedDateTime = DateTime.Now;
 
-                Result result = new Result();
+                Result result = new Result(false, "Unable to edit post at this time.");
                 
                 try
                 {
@@ -170,8 +169,6 @@ namespace Web.Controllers
                 }
                 catch (Exception ex)
                 {
-                    result.Message = "Unable to edit post at this time.";
-
                     SysException exception = new SysException(ex)
                     {
                         Url = UrlHelper.GetRequestUrl(HttpContext)

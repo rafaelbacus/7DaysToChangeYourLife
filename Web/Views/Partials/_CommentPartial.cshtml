@@ -1,0 +1,7 @@
+@model Web.ViewModels.Comment.CommentViewModel;
+
+<div class="comment">
+    <h4>@Model.Author</h4>
+    <p>@Model.RowCreatedDateTime.ToString("MMM dd, yyyy HH:mm:ss")</p>
+    <span>@Html.Raw(Model.Content)</span>
+</div>

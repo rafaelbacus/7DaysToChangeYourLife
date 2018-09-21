@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Web.ViewModels.Admin;
+using Web.ViewModels.Comment;
 
 namespace Web.ViewModels.Post
 {

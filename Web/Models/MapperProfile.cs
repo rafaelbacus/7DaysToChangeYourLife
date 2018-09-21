@@ -1,8 +1,7 @@
-using System;
 using System.Collections.Generic;
 using AutoMapper;
 using Model;
-using Web.ViewModels.Admin;
+using Web.ViewModels.Comment;
 using Web.ViewModels.Post;
 
 namespace Web.Models

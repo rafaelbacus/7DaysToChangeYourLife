@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Web.ViewModels.Admin
+namespace Web.ViewModels.Comment
 {
     public class CommentViewModel
     {
@@ -10,7 +10,7 @@ namespace Web.ViewModels.Admin
 
         [Display(Name = "Author")]
         [MaxLength(50, ErrorMessage = "Max length of {0} characters.")]
-        public string Author { get; set; } = "Anonymous";
+        public string Author { get; set; }
 
         [Display(Name = "Content")]
         [MaxLength(300, ErrorMessage = "Max length of {0} characters.")]
