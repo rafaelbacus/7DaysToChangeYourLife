@@ -32,7 +32,7 @@ namespace Model
                    .WithMany(p => p.Comments);
             builder.Property(c => c.Author).HasMaxLength(64);
             builder.Property(c => c.Content).IsRequired()
-                                            .HasMaxLength(1024);
+                                            .HasMaxLength(4096);
             builder.Property(c => c.IsActive).IsRequired()
                                              .HasDefaultValue(true);
         }

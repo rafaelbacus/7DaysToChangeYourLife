@@ -8,9 +8,10 @@ $(function(){
 /* Add Comment */
 $(document).on("click", ".comment-add", function(btn){
 	var editor = tinymce.get("CommentEditor");
-	var comment = $.trim(editor.getContent({format: 'text'}));
 	var author = $(".comment-author").first().val();
+	var comment = $.trim(editor.getContent({format: 'text'}));
 	var msg = $(".comments .comment-msg");
+	var token = $(".comments #RequestVerificationToken").val();
 
 	SetLocalStorageAuthor(author);
 
@@ -31,6 +32,8 @@ $(document).on("click", ".comment-add", function(btn){
 		},
 		dataType: 'json',
 		beforeSend: function(xhr, settings){
+			xhr.setRequestHeader("RequestVerificationToken", token);
+
 			var msg = $(".comments .comment-msg");
 			$(msg).text("");
 			$(msg).removeClass("text-success");
@@ -46,17 +49,27 @@ $(document).on("click", ".comment-add", function(btn){
 	});
 });
 
-function commentAddSuccess(result, stauts, xhr) {
+function commentAddSuccess(data, stauts, xhr) {
 	var msg = $(".comments .comment-msg");
 
-	if (result.succeeded) {
+	if (data.result.succeeded) {
 		$(msg).addClass("text-success");
+
+		var editor = tinymce.get("CommentEditor");
+		editor.setContent("");
+		SetCharacterCount(editor, ".post-detail .character-count");
+
+		var author = $(".comment-author").first().val();
+		var comment = $.trim(editor.getContent({format: 'text'}));
+
+		CreateCommentBlock(author, data.date, comment);
 	}
 	else {
 		$(msg).addClass("text-danger");
 	}
 
-	$(msg).html(result.message);
+	$(msg).html(data.result.message);
+	$(".comments #RequestVerificationToken").val(data.token);
 }
 
 function commentAddError(xhr, status, error) {
@@ -65,6 +78,25 @@ function commentAddError(xhr, status, error) {
 	$(msg).text("Unable to add comment at this time.");
 }
 
+function CreateCommentBlock(authorName, dateString, contentText){
+	// Create new DOM elements for comment
+	var comment = $("<div></div>", { class: "comment" });
+	var author = $("<h4></h4>").text(authorName);
+	var date = $("<p></p>").text(dateString);
+	var content = $("<span></span>").text(contentText);
+	
+	// Order elements
+	$(comment).append(author);
+	$(comment).append(date);
+	$(comment).append(content);
+	
+	// Add new comment block
+	var commentsList = $(".comments-list");
+	if ($(commentsList).children(".first-to-comment").length != 0) {
+		$(commentsList).empty();
+	}
+	$(commentsList).append(comment);
+}
 
 // Local Storage
 var authorKey = "comment-author";

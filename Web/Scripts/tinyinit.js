@@ -13,7 +13,7 @@ tinymce.init({
 tinymce.init({
     selector: '.comment-editor',
     browser_spellcheck: true,
-    max_chars: 300,
+    max_chars: 1024,
     menubar: false,
     plugins: [
         'advlist autolink link image imagetools lists charmap hr anchor pagebreak spellchecker',
@@ -55,8 +55,8 @@ tinymce.init({
 });
 
 function SetCharacterCount(editor, target) {
-    var text = editor.getContent({format: 'text'});
+    var text = $.trim(editor.getContent({format: 'text'}));
     var count = text.length;
-    var maxChars = "300";
+    var maxChars = "1024";
     $(target).html(count + "/" + maxChars);
 }

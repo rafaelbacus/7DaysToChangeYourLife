@@ -35,9 +35,13 @@ namespace Web.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Add(AddCommentViewModel model)
         {
             Result result = new Result(false, "Unable to add comment at this time.");
+            string dateNow = string.Empty;
+            string token = SecurityHelper.GetAntiForgeryToken(HttpContext);    
 
             if (String.IsNullOrWhiteSpace(model.Content))
             {
@@ -45,9 +49,18 @@ namespace Web.Controllers
             }
             else if (ModelState.IsValid)
             {
-                var comment = _mapper.Map<AddCommentViewModel, Comment>(model);
-                comment.RowCreatedBy = comment.RowModifiedBy = 1;
-                comment.RowCreatedDateTime = comment.RowModifiedDateTime = DateTime.Now;
+
+                Comment comment = new Comment
+                {
+                    PostId = model.PostId,
+                    Author = model.Author,
+                    Content = model.Content,
+                    RowCreatedBy = 1, 
+                    RowModifiedBy = 1,
+                    RowCreatedDateTime = DateTime.Now, 
+                    RowModifiedDateTime = DateTime.Now
+                };
+                dateNow = comment.RowCreatedDateTime.ToString("MMM dd, yyyy HH:mm:ss");
                 
                 try
                 {
@@ -65,7 +78,7 @@ namespace Web.Controllers
                 }
             }
 
-            return Json(result);
+            return Json(new { result, token, date = dateNow });
         }
     }
  }

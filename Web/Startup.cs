@@ -71,6 +71,7 @@ namespace Web
             {
                 cfg.AddProfile<MapperProfile>();
             });
+
             IMapper mapper = config.CreateMapper();
             services.AddSingleton(mapper);
 
