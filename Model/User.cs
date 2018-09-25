@@ -26,8 +26,10 @@ namespace Model
             builder.Property(p => p.Email).IsRequired();
             builder.Property(p => p.NormalizedEmail).IsRequired();
             builder.Property(p => p.PasswordHash).IsRequired();
-            builder.Property(p => p.FirstName).IsRequired();
-            builder.Property(p => p.LastName).IsRequired();
+            builder.Property(p => p.FirstName).IsRequired()
+                                              .HasMaxLength(64);
+            builder.Property(p => p.LastName).IsRequired()
+                                             .HasMaxLength(64);
             builder.Property(p => p.IsActive).IsRequired()
                                              .HasDefaultValue(true);
         }

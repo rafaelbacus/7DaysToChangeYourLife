@@ -30,8 +30,10 @@ namespace Model
         {
             builder.HasOne(p => p.Blog)
                    .WithMany(b => b.Posts);
-            builder.Property(p => p.Title).IsRequired().HasMaxLength(150);
-            builder.Property(p => p.Content).IsRequired().HasMaxLength(4000);
+            builder.Property(p => p.Title).IsRequired()
+                                          .HasMaxLength(128);
+            builder.Property(p => p.Content).IsRequired()
+                                            .HasMaxLength(4096);
             builder.Property(p => p.IsActive).IsRequired()
                                              .HasDefaultValue(true);
         }

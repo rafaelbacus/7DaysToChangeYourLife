@@ -24,8 +24,10 @@ namespace Model
     {
         public void Configure(EntityTypeBuilder<Blog> builder)
         {
-            builder.Property(b => b.Name).IsRequired();
-            builder.Property(b => b.Url).IsRequired();
+            builder.Property(b => b.Name).IsRequired()
+                                         .HasMaxLength(128);
+            builder.Property(b => b.Url).IsRequired()
+                                        .HasMaxLength(128);
         }
     }
 }

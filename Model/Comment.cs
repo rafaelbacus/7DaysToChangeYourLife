@@ -30,8 +30,9 @@ namespace Model
         {
             builder.HasOne(c => c.Post)
                    .WithMany(p => p.Comments);
-            builder.Property(c => c.Author).HasMaxLength(50);
-            builder.Property(c => c.Content).IsRequired().HasMaxLength(300);
+            builder.Property(c => c.Author).HasMaxLength(64);
+            builder.Property(c => c.Content).IsRequired()
+                                            .HasMaxLength(1024);
             builder.Property(c => c.IsActive).IsRequired()
                                              .HasDefaultValue(true);
         }

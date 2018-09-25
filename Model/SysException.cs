@@ -38,10 +38,14 @@ namespace Model
     {
         public void Configure(EntityTypeBuilder<SysException> builder)
         {
-            builder.Property(s => s.Message).IsRequired();
-            builder.Property(s => s.Type).IsRequired();
-            builder.Property(s => s.StackTrace).IsRequired();
-            builder.Property(s => s.Url).IsRequired();
+            builder.Property(s => s.Message).IsRequired()
+                                            .HasMaxLength(256);
+            builder.Property(s => s.Type).IsRequired()
+                                         .HasMaxLength(256);
+            builder.Property(s => s.StackTrace).IsRequired()
+                                               .HasMaxLength(8192);
+            builder.Property(s => s.Url).IsRequired()
+                                        .HasMaxLength(256);
             builder.Property(s => s.RowCreatedBy).IsRequired();
             builder.Property(s => s.RowCreatedDateTime).IsRequired();
             builder.Property(s => s.RowModifiedBy).IsRequired();
