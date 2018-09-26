@@ -2,38 +2,55 @@
 
 .home-index {
     .post {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+
         margin-bottom: 15px;
         height: 400px;;
         padding: 15px 20px;
         border: $border;
-        transition: box-shadow 0.6s ease;
-
-        a {
-            position: relative;
-            height: 100%;
-            color: #333;
-            &:hover {
-                text-decoration: none;
-            }
-
-            .title {
-                color: #007bff;
-            }
-
-            .content {
-                overflow-y: hidden;
-            }
-
-            .read-more {
-                position: absolute;
-                bottom: 0;
-                right: 0;
-            }
-        }
+        transition: box-shadow 0.3s ease;
 
         &:hover {
             box-shadow: $box-shadow;
-            cursor: pointer;
+        }
+
+        .title {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .content {
+            flex: 1 0 auto;
+            overflow-y: hidden;
+        }
+
+        .read-more {
+            color: #333;
+            text-decoration: none;
+            border: $border;
+            background-color: white;
+
+            &:hover {
+                transition: background-color 0.3s ease,
+                            border-color 0.3s ease,
+                            color 0.3s ease;
+                background-color: $color-primary;
+                border-color: $color-primary;
+                color: white;
+                cursor: pointer;
+            }
+
+            &:active {
+                background-color: $color-primary-dark;
+                border-color: $color-primary-dark;
+            }
+
+            a {
+                color: #333;
+            }
         }
     }
 }

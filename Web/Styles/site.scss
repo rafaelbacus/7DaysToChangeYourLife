@@ -67,3 +67,8 @@ html, body {
 .validation-summary-valid span { 
     display: none;
  }
+
+.btn:focus {
+    outline: none;
+    box-shadow: none;
+}
