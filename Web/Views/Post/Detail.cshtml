@@ -1,10 +1,8 @@
+@using Helper;
 @model Web.ViewModels.Post.PostViewModel
-@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
-@functions{
-    public string GetAntiXsrfRequestToken()
-    {
-        return Xsrf.GetAndStoreTokens(Context).RequestToken;
-    }
+@{
+    ViewData[Constants.PostId] = Model.Id;
+    ViewData[Constants.CommentId] = -1;
 }
 
 <div class="post-detail">
@@ -21,20 +19,11 @@
     <div class="row">
         <div class="col-12 comments">
             <h3>Comments</h3>
-            <textarea id="CommentEditor" class="comment-editor" maxlength="1024"></textarea>
-            <div class="d-flex justify-content-end align-items-center comment-info">
-                <span style="color: #aaa;">Author: </span>
-                <input type="text" class="comment-author" placeholder="anon">
-                <span class="comment-msg"></span>
-                <span class="character-count">0/1024</span>
-                <img src="~/images/loader.gif" class="loader d-none" width="25" height="25"/>
-                <input type="hidden" id="RequestVerificationToken" name="RequestVerificationToken" value="@GetAntiXsrfRequestToken()">
-                <button class="btn btn-primary comment-add" data-id="@Model.Id">Add</button>
-            </div>
+            <partial name="~/Views/Partials/_CommentEditorPartial.cshtml" view-data="ViewData"/>
             <div class="comments-list">
                 @if(Model.Comments != null && Model.Comments.Count() == 0)
                 {
-                    <h4 class="first-to-comment">Be the first to comment!</h4>
+                    <h4 class="first-to">Be the first to comment!</h4>
                 }
                 else {
                     foreach(var comment in Model.Comments)

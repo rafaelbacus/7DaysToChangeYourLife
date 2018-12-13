@@ -41,7 +41,7 @@ namespace Web.Controllers
         {
             Result result = new Result(false, "Unable to add comment at this time.");
             string dateNow = string.Empty;
-            string token = SecurityHelper.GetAntiForgeryToken(HttpContext);    
+            string token = SecurityHelper.GetAntiXsrfRequestToken(HttpContext);    
 
             if (String.IsNullOrWhiteSpace(model.Content))
             {
@@ -49,7 +49,6 @@ namespace Web.Controllers
             }
             else if (ModelState.IsValid)
             {
-
                 Comment comment = new Comment
                 {
                     PostId = model.PostId,
@@ -60,6 +59,7 @@ namespace Web.Controllers
                     RowCreatedDateTime = DateTime.Now, 
                     RowModifiedDateTime = DateTime.Now
                 };
+
                 dateNow = comment.RowCreatedDateTime.ToString("MMM dd, yyyy HH:mm:ss");
                 
                 try

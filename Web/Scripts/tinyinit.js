@@ -11,7 +11,7 @@ tinymce.init({
 });
 
 tinymce.init({
-    selector: '.comment-editor',
+    selector: '.comment-reply-editor',
     browser_spellcheck: true,
     max_chars: 1024,
     menubar: false,
@@ -21,7 +21,7 @@ tinymce.init({
         'save table directionality emoticons template paste textcolor'
     ],
     paste_preprocess: function (plugin, args) {
-        var editor = tinymce.get("CommentEditor");
+        var editor = tinymce.activeEditor;
         var currentText = $.trim(editor.getContent({format: 'text'}));
         var currentLength = currentText.length;
         var text = args.content;
@@ -47,7 +47,7 @@ tinymce.init({
         });
         
         editor.on('keyup', function (e) {
-            SetCharacterCount(editor, ".post-detail .character-count");
+            SetCharacterCount(editor, ".character-count");
         });
     },    
     statusbar: false,
@@ -57,6 +57,6 @@ tinymce.init({
 function SetCharacterCount(editor, target) {
     var text = $.trim(editor.getContent({format: 'text'}));
     var count = text.length;
-    var maxChars = "1024";
+    var maxChars = editor.settings.max_chars;
     $(target).html(count + "/" + maxChars);
 }

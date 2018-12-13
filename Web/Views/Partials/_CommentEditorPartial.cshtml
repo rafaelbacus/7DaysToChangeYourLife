@@ -1,0 +1,25 @@
+@using Helper;
+@{
+    var postId = ViewData[Constants.PostId] != null ? (int)ViewData[Constants.PostId] : -1;
+    var commentId = ViewData[Constants.CommentId] != null ? (int)ViewData[Constants.CommentId] : -1;
+}
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+@functions{
+    public string GetAntiXsrfRequestToken()
+    {
+        return Xsrf.GetAndStoreTokens(Context).RequestToken;
+    }
+} 
+
+<div class="editor">
+    <textarea class="comment-reply-editor" maxlength="1024"></textarea>
+    <div class="d-flex justify-content-end align-items-center info">
+        <span style="color: #aaa;">Author: </span>
+        <input type="text" class="comment-reply-author" placeholder="anon">
+        <span class="comment-reply-msg"></span>
+        <span class="character-count">0/1024</span>
+        <img src="~/images/loader.gif" class="loader d-none" width="25" height="25"/>
+        <input type="hidden" id="RequestVerificationToken" name="RequestVerificationToken" value="@GetAntiXsrfRequestToken()">
+        <button class="btn btn-primary comment-reply-add" data-postid="@postId" data-commentid="@commentId">Submit</button>
+    </div>
+</div>

@@ -1,26 +1,21 @@
+@using Helper;
 @model Web.ViewModels.Comment.CommentViewModel;
+@{
+    ViewData[Constants.CommentId] = Model.Id;
+}
 
 <div class="comment">
-    <h4>@Model.Author</h4>
-    <p>@Model.RowCreatedDateTime.ToString("MMM dd, yyyy HH:mm:ss")</p>
-    <span>@Html.Raw(Model.Content)</span>
+    <partial name="~/Views/Partials/_CommentInfoPartial.cshtml" model="Model"/>
     <div class="replies-list">
-        @*@if(Model.Replies != null && Model.Replies.Count() != 0){
-            for(int i = 0; i < 5; i++)
+        @if(Model.Replies != null && Model.Replies.Count() != 0){
+            foreach(var reply in Model.Replies)
             {
-                <div class="reply">
-                    <p>Reply author @i</p>
-                    <p>Reply content @i</p>
-                </div>
+                <partial name="~/Views/Partials/_CommentInfoPartial.cshtml" model="reply"/>
             }
-        }*@
-        @for(int i = 0; i < 5; i++)
-        {
-            <div class="reply">
-                <p>Reply author @i</p>
-                <p>Reply content @i</p>
-            </div>
         }
+        <button class="btn btn-primary btn-reply">Reply</button>
     </div>
-    <button class="btn btn-comment-reply">Reply</button>
+    <div class="reply-editor-container d-none">
+        <partial name="~/Views/Partials/_CommentEditorPartial.cshtml" view-data="ViewData"/>
+    </div>
 </div>

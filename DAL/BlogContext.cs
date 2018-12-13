@@ -31,25 +31,25 @@ namespace DAL
             builder.Entity<Role>().ToTable("Roles");
             builder.Entity<IdentityUserClaim<int>>().ToTable("UserClaims");
             builder.Entity<IdentityUserLogin<int>>().ToTable("UserLogins")
-                                                       .HasKey(userLogin => new
-                                                       {
-                                                           userLogin.LoginProvider,
-                                                           userLogin.ProviderKey
-                                                       });
+                                                    .HasKey(userLogin => new
+                                                    {
+                                                        userLogin.LoginProvider,
+                                                        userLogin.ProviderKey
+                                                    });
             builder.Entity<IdentityUserRole<int>>().ToTable("UserRoles")
-                                                      .HasKey(userRole => new
-                                                      {
-                                                          userRole.UserId,
-                                                          userRole.RoleId
-                                                      });
+                                                    .HasKey(userRole => new
+                                                    {
+                                                        userRole.UserId,
+                                                        userRole.RoleId
+                                                    });
             builder.Entity<User>().ToTable("Users");
             builder.Entity<IdentityUserToken<int>>().ToTable("UserTokens")
-                                                       .HasKey(userToken => new
-                                                       {
-                                                           userToken.UserId,
-                                                           userToken.LoginProvider,
-                                                           userToken.Name
-                                                       });
+                                                    .HasKey(userToken => new
+                                                    {
+                                                        userToken.UserId,
+                                                        userToken.LoginProvider,
+                                                        userToken.Name
+                                                    });
 
         }
     }

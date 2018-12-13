@@ -5,7 +5,7 @@ namespace Web.Helpers
 {
     public static class SecurityHelper
     {
-        public static string GetAntiForgeryToken(HttpContext httpContext)
+        public static string GetAntiXsrfRequestToken(HttpContext httpContext)
         {
             string token = string.Empty;
             var antiForgeryService = httpContext.RequestServices.GetService(typeof(IAntiforgery)) as IAntiforgery;

@@ -7,6 +7,7 @@ namespace Web.ViewModels.Comment
     public class CommentViewModel
     {
         public int Id { get; set; }
+        public int PostId { get; set; }
 
         [Display(Name = "Author")]
         [MaxLength(64, ErrorMessage = "Max length of {0} characters.")]

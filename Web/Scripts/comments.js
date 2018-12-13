@@ -1,19 +1,29 @@
 $(function(){
 	var url = window.location.href;
 	if (url.indexOf("Post/Detail") !== -1) {
-		SetCommentAuthor();
+		SetAuthor();
 	}
 });
 
+$(document).on("click", ".btn-reply", function(){
+	var comment = $(this).closest(".comment").first();
+	var container = $(comment).find(".reply-editor-container").first();
+	$(container).removeClass("d-none");
+	$(this).addClass("d-none");
+});
+
 /* Add Comment */
-$(document).on("click", ".comment-add", function(btn){
-	var editor = tinymce.get("CommentEditor");
+$(document).on("click", ".comment-reply-add", function(btn){
+	var id = $(this).closest(".editor").first().find(".mce-tinymce").attr("id");
+	var editor = tinymce.get(id);
 	var author = $(".comment-author").first().val();
 	var comment = $.trim(editor.getContent({format: 'text'}));
 	var msg = $(".comments .comment-msg");
 	var token = $(".comments #RequestVerificationToken").val();
 
-	SetLocalStorageAuthor(author);
+	if (author !== "") {
+		SetLocalStorageAuthor(author);
+	}
 
 	if (comment.length < 1) {
 		$(msg).addClass("text-danger");
@@ -99,18 +109,34 @@ function CreateCommentBlock(authorName, dateString, contentText){
 }
 
 // Local Storage
-var authorKey = "comment-author";
+var authorKey = "comment-reply-author";
 function SetLocalStorageAuthor(author){
 	if (typeof(Storage) !== "undefined" && author !== "") {
 		localStorage.setItem(authorKey, author);
 	} 
 }
 
-function SetCommentAuthor(){
+function SetAuthor(){
+	if (typeof(Storage) !== "undefined") {
+		var author = localStorage.getItem(authorKey);
+		if (author !== undefined && author !== "undefined" && author !== "") {
+			$(".comment-reply-author").val(author);
+		}
+		else{
+			$(".comment-reply-author").val("");
+		}
+	} 
+}
+
+function GetAuthor(){
+	var author = '';
+
 	if (typeof(Storage) !== "undefined") {
 		var author = localStorage.getItem(authorKey);
 		if (author !== undefined || author !== "") {
-			$(".comment-author").val(author);
+			author = $(".comment-reply-author").val();
 		}
 	} 
+
+	return author;
 }

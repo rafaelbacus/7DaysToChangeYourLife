@@ -17,5 +17,7 @@ namespace Web.ViewModels.Comment
         [Display(Name = "Content")]
         [MaxLength(1024, ErrorMessage = "Max length of {0} characters.")]
         public string Content { get; set; }
+
+        public int CommentId { get; set; }
     }
 }

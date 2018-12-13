@@ -17,7 +17,7 @@ var autoprefixerOptions = {browsers: ['last 5 versions']};
 var renameOptions = {suffix: '.min'};
 
 gulp.task('css', function(){
-    gulp.src(cssOutput + "*", { read : false})
+    gulp.src(cssOutput + "*.css", { read : false})
         .pipe(clean());
 
     return gulp.src(cssInput)
